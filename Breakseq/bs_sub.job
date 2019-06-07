@@ -18,4 +18,4 @@ input=$(sed -n $index all_mayo.list)
 outdir=$(basename ${input})
 
 # Needs to provide reference genome
-bash breakseq.sh ${input} /home/jluo/breakseq2_out/${outdir} /home/jsul/bin/adsp/hg38/GRCh38_full_analysis_set_plus_decoy_hla.fa
+bash breakseq2.sh ${input} /home/jluo/breakseq2_out/${outdir} /home/jsul/bin/adsp/hg38/GRCh38_full_analysis_set_plus_decoy_hla.fa
