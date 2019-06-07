@@ -1,0 +1,17 @@
+#!/bin/bash
+#$ -V
+#$ -S /bin/bash
+#$ -N breakdancer_mayo_350
+#$ -cwd
+#$ -o /home/jluo/bd_350/bd.$JOB_ID.out
+#$ -j y
+#$ -m bea
+#$ -t 1-350:1
+#$ -tc 10
+#$ -l h_vmem=10G,h_rt=20:00:00
+
+index=${SGE_TASK_ID}p
+input=$(sed -n $index all_mayo.list)
+outdir=$(basename ${input})
+
+bash breakdancer_submission.sh ${input} /home/jluo/bd_350/${outdir}
