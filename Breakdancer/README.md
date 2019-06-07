@@ -1,6 +1,5 @@
 # Breakdancer v1.4.5
 
-
 Breakdancer utilizes read pair and split read method to detect structure variance.
 
 Please download Breakdancer v1.4.5 (the latest version) from the github page https://github.com/genome/breakdancer/releases
