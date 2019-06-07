@@ -7,7 +7,10 @@
 #$ -j y
 #$ -m bea
 #$ -t 1-350:1
+
+# Run 10 jobs at a time if the cluster is busy
 #$ -tc 10
+
 #$ -l h_vmem=10G,h_rt=20:00:00
 
 index=${SGE_TASK_ID}p
