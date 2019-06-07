@@ -4,6 +4,8 @@ Breakseq2 utilizes its own breakpoint library to call structure variance.
 
 Please download breakseq from https://github.com/bioinform/breakseq2/releases.
 
+Instructions from the developer could be found here http://bioinform.github.io/breakseq2/
+
 Please note:
 
   1. Python is needed for because the main script is written in python.
