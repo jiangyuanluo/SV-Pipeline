@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# This is not the job submission file. Please use bd_sub.job for job submission.
+
 # Bam file
 input=$1
 
