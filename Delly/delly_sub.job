@@ -1,0 +1,17 @@
+#!/bin/bash
+#$ -V
+#$ -S /bin/bash
+#$ -N delly_mayo_350
+#$ -cwd
+#$ -o /home/jluo/delly_out/delly.$JOB_ID.out
+#$ -j y
+#$ -m bea
+#$ -t 1-20:1
+#$ -tc 5
+#$ -l h_vmem=15G,h_rt=36:00:00
+
+index=${SGE_TASK_ID}p
+input=$(sed -n $index all_mayo.list)
+outdir=$(basename ${input})
+
+bash delly_submission.sh ${input} /home/jluo/delly_out/${outdir} /home/jsul/bin/adsp/hg38/GRCh38_full_analysis_set_plus_decoy_hla.fa

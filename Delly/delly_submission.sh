@@ -1,0 +1,44 @@
+input=$1
+outdir=$2
+reference=$3
+filename=$(basename $input)
+dir='/home/jluo'
+toolName="Delly"
+mkdir $outdir
+
+# -----------------------------------------------
+
+now="$(date)"
+
+logfile=${outdir}/report_delly.${filename}.log
+
+printf "START\n" >> $logfile
+printf "%s --- RUNNING %s\n" "$now" $toolName >> $logfile
+
+res1=$(date +%s.%N)
+
+bcf=${outdir}/${filename}.bcf
+
+vcf=${outdir}/${filename}.vcf
+
+$dir/delly_v0.7.8_linux_x86_64bit call $input -o $bcf -g $reference
+
+#bcftools view $bcf > $vcf
+
+res2=$(date +%s.%N)
+dt=$(echo "$res2-$res1" | bc)
+dd=$(echo "$dt/86400" | bc)
+dt2=$(echo "$dt-86400*$dd" | bc)
+dh=$(echo "$dt2/3600" | bc)
+dt3=$(echo "$dt2-3600*$dh" | bc)
+dm=$(echo "$dt3/60" | bc)
+ds=$(echo "$dt3-60*$dm" | bc)
+now="$(date)"
+printf "%s --- TOTAL RUNTIME: %d:%02d:%02d:%02.4f\n" "$now" $dd $dh $dm $ds >> $logfile
+
+now="$(date)"
+printf "%s --- FINISHED RUNNING %s %s\n" "$now" "$toolName" >> $logfile
+
+# -----------------------------------------------
+
+printf "DONE\n" >> $logfile
