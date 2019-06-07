@@ -1,0 +1,21 @@
+#!/bin/bash
+#$ -V
+#$ -S /bin/bash
+#$ -N breakseq2_mayo_350
+#$ -cwd
+#$ -o /home/jluo/breakseq2_out/breakseq.$JOB_ID.out
+#$ -j y
+#$ -m bea
+#$ -t 1-350:1
+
+# Run a total of 10 jobs when cluster is busy
+#$ -tc 10
+
+#$ -l h_vmem=10G,h_rt=24:00:00
+
+index=${SGE_TASK_ID}p
+input=$(sed -n $index all_mayo.list)
+outdir=$(basename ${input})
+
+# Needs to provide reference genome
+bash breakseq.sh ${input} /home/jluo/breakseq2_out/${outdir} /home/jsul/bin/adsp/hg38/GRCh38_full_analysis_set_plus_decoy_hla.fa
