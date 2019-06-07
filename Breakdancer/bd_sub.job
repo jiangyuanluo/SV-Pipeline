@@ -17,4 +17,4 @@ index=${SGE_TASK_ID}p
 input=$(sed -n $index all_mayo.list)
 outdir=$(basename ${input})
 
-bash breakdancer_submission.sh ${input} /home/jluo/bd_350/${outdir}
+bash breakdancer.sh ${input} /home/jluo/bd_350/${outdir}
