@@ -3,6 +3,8 @@ outdir=$2
 reference=$3
 filename=$(basename $input)
 
+# This is not the job submission file, use delly_sub.job to submit jobs
+
 # Directory where binary delly file is installed
 dir='/home/jluo'
 
