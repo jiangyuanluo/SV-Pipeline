@@ -2,12 +2,16 @@ input=$1
 outdir=$2
 reference=$3
 filename=$(basename $input)
+
+# Directory where binary delly file is installed
 dir='/home/jluo'
+
 toolName="Delly"
 mkdir $outdir
 
 # -----------------------------------------------
 
+# Start time and log
 now="$(date)"
 
 logfile=${outdir}/report_delly.${filename}.log
@@ -17,14 +21,18 @@ printf "%s --- RUNNING %s\n" "$now" $toolName >> $logfile
 
 res1=$(date +%s.%N)
 
-bcf=${outdir}/${filename}.bcf
+# Name the output files
 
+bcf=${outdir}/${filename}.bcf
 vcf=${outdir}/${filename}.vcf
 
+# SV calling
 $dir/delly_v0.7.8_linux_x86_64bit call $input -o $bcf -g $reference
 
-#bcftools view $bcf > $vcf
+# Convert the binary files to vcf files, bcftool required
+bcftools view $bcf > $vcf
 
+# End time
 res2=$(date +%s.%N)
 dt=$(echo "$res2-$res1" | bc)
 dd=$(echo "$dt/86400" | bc)
